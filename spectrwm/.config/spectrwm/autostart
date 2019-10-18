@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#export BSPWM_CONFIG="${XDG_CONFIG_HOME}/bspwm"
+#sxhkd &
+$XDG_CONFIG_HOME/spectrwm/spectrwm.sh &
+xbindkeys &
+compton &
+~/.fehbg &
+xsetroot -cursor_name left_ptr &
+# Start xautolock daemon
+pgrep -xu "$USER" xautolock >/dev/null || \
+    xautolock -locker "slock" -time 10 & 
+

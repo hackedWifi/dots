@@ -1,0 +1,338 @@
+[global/wm]
+;margin-top = 0
+;margin-bottom = 2
+
+[colors]
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+foreground-alt = ${xrdb:color7}
+right-color = #000f0f0f
+alert = ${xrdb:color1}
+workspace-focused = ${xrdb:color6}
+;workspace-occupied =
+
+[bar/center]
+background = ${colors.background}
+foreground = ${colors.foreground}
+monitor = eDP1
+dpi = 220;
+width = 30%
+height = 60 
+line-size = 3
+line-color = #c594c5
+
+;border-size = 2
+;border-color = #c594c5
+offset-y = 0.5%
+offset-x = 35%
+padding = 1
+module-margin = 1
+font-0 = SauceCodePro Nerd Font:size=10;1
+;font-0 = FuraMono Nerd Font:size=10;1
+font-1 = FuraMono Nerd Font:size=10;1
+font-2 = siji:pixelsize=10;1
+;modules-left = wifi
+modules-center = xbacklight pulseaudio battery temperature 
+;modules-right = 
+
+override-redirect = true
+
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/left]
+;border-size= ${bar/center.border-size}
+;border-color= ${bar/center.border-color}
+dpi = ${bar/center.dpi}
+monitor = ${bar/center.monitor}
+width = 30%
+height = ${bar/center.height}
+offset-y = 0.5%
+offset-x = 1%
+
+;fixed-center = true
+font-0 = ${bar/center.font-0}
+font-1 = ${bar/center.font-1}
+font-2 = ${bar/center.font-2}
+background = ${colors.background}
+foreground = ${colors.foreground}
+modules-center = spectrwm
+override-redirect = true
+;fixed-center = true
+
+[bar/right]
+;border-size= ${bar/center.border-size}
+;border-color= ${bar/center.border-color}
+dpi = ${bar/center.dpi} 
+monitor = ${bar/center.monitor}
+width = 30%
+height = ${bar/center.height}
+offset-y = 0.5%
+offset-x = 69%
+;fixed-center = true
+font-0 = ${bar/center.font-0}
+font-1 = ${bar/center.font-1}
+font-2 = ${bar/center.font-2}
+background = ${colors.background}
+foreground = ${colors.foreground}
+;tray-maxsize= 16
+;tray-position = right
+;tray-padding = 2
+;tray-background = #0063ff
+modules-center = date wifi
+module-margin = 1
+padding = 1
+override-redirect = true
+
+[module/spectrwm]
+
+type = internal/xworkspaces
+format = <label-state> 
+
+icon-0 = code;
+icon-1 = browser;
+icon-2 = term;
+icon-3 = 3;
+icon-4 = 4;
+icon-5 = 5;
+icon-6 = 6;
+icon-7 = 7;
+icon-8 = 8;
+icon-9 = 8;
+icon-default =  
+label-active = %icon% 
+label-active-foreground = ${colors.background}
+label-active-background = ${colors.foreground}
+label-active-padding = 2
+foreground = ${colors.background} 
+background = ${colors.foreground}
+label-occupied = %icon% 
+label-occupied-foreground = ${colors.background}
+label-occupied-background = ${colors.foreground}
+
+label-occupied-padding = 2
+label-urgent = %icon%
+label-urgent-foreground = ${colors.background}
+label-urgent-background = ${colors.foreground}
+label-urgent-padding = 2
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground}
+label-empty-padding = 2
+
+[module/xwindow]
+
+
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label> <bar>
+label =  
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = #fff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "   "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #f90000
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = #4bffdc
+label = %percentage_used%%
+
+[module/wifi]
+type = internal/network
+interface = wlp2s0
+interval = 1
+format-connected = <label-connected>
+format-connected-underline = #c594c5
+label-connected = 直 %essid% 
+
+label-disconnected = 睊
+;padding-left = 1
+;padding-right = 1
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+;ping-interval = 3
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+;date =
+date = %a %b %e
+format = <label>
+time = %r
+;time = %I:%M
+time-alt = %H:%M:%S
+format-foreground= ${colors.foreground}
+format-background= ${colors.background}
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground}
+;format-underline = #0a6cf5
+
+label = %date% %time%
+;label-padding = 1
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume = 墳 %percentage%%
+label-volume-foreground = ${colors.foreground}
+
+label-muted = 婢 muted
+label-muted-foreground = ${colors.foreground}
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #ffb52a
+format-discharging = <ramp-capacity> <label-discharging>
+;format-discharging-underline = ${self.format-charging-underline}
+label-discharging = %percentage%%
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = " "
+ramp-capacity-1 = " " 
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+ramp-capacity-4 = " "
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 =""
+animation-charging-1 =""
+animation-charging-2 =""
+animation-charging-3 =""
+animation-charging-4 =""
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+animation-discharging-4 =" "
+animation-discharging-3 =" "
+animation-discharging-2 =" "
+animation-discharging-1 =" "
+animation-discharging-0 =" "
+animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>
+format-underline = ${colors.background}
+format-warn = <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label =   %temperature-f%
+label-warn = %temperature-f%
+label-warn-foreground = ${colors.alert}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+; vim:ft=dosini
